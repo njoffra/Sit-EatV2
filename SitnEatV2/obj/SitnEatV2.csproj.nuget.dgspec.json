@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Franjo\\Desktop\\SitnEatV2\\SitnEatV2\\SitnEatV2.csproj": {}
+    "C:\\Users\\Franjo\\Desktop\\Sit-EatV2\\SitnEatV2\\SitnEatV2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Franjo\\Desktop\\SitnEatV2\\SitnEatV2\\SitnEatV2.csproj": {
+    "C:\\Users\\Franjo\\Desktop\\Sit-EatV2\\SitnEatV2\\SitnEatV2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Franjo\\Desktop\\SitnEatV2\\SitnEatV2\\SitnEatV2.csproj",
+        "projectUniqueName": "C:\\Users\\Franjo\\Desktop\\Sit-EatV2\\SitnEatV2\\SitnEatV2.csproj",
         "projectName": "SitnEatV2",
-        "projectPath": "C:\\Users\\Franjo\\Desktop\\SitnEatV2\\SitnEatV2\\SitnEatV2.csproj",
+        "projectPath": "C:\\Users\\Franjo\\Desktop\\Sit-EatV2\\SitnEatV2\\SitnEatV2.csproj",
         "packagesPath": "C:\\Users\\Franjo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Franjo\\Desktop\\SitnEatV2\\SitnEatV2\\obj\\",
+        "outputPath": "C:\\Users\\Franjo\\Desktop\\Sit-EatV2\\SitnEatV2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Franjo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,6 +54,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.6, )"
             }
           },
           "imports": [

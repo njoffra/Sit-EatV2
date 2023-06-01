@@ -14,43 +14,48 @@ namespace SitnEat.Controllers
 		}
 
 		private readonly AuthDbContext _authDbContext;
-		private readonly UserManager<IdentityUser> userManager;
-		private readonly SignInManager<IdentityUser> signInManager;
-		public AccountController(AuthDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+		private readonly UserManager<ApplicationUser> userManager;
+		private readonly SignInManager<ApplicationUser> signInManager;
+		public AccountController(AuthDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
 		{
 			_authDbContext = context;
 			this.userManager = userManager;
 			this.signInManager = signInManager;
 		}
-		
+
 
 		[HttpGet]
 		public IActionResult Register()
 		{
-			return View(new Register());
+			return View();
 		}
 
+        protected ILookupNormalizer normalizer;
 
-
-		[HttpPost]
+        [HttpPost]
 		public async Task<IActionResult> Register(Register model)
 		{
-       
-            if (ModelState.IsValid)
-			{
-				var user = new IdentityUser
-				{
-					UserName = model.Email,
-					Email = model.Email
-				};
 
-				var result = await userManager.CreateAsync(user, model.Password);
-                
-                if (result.Succeeded)
+			if (ModelState.IsValid)
+			{
+				var user = new ApplicationUser
+				{
+					FirstName = model.FirstName,
+					LastName = model.LastName,
+					UserName = model.Email,
+					Email = model.Email,
+					PhoneNumber = model.PhoneNumber,
+                };
+                //user.Email = userManager.NormalizeEmail(user.Email);
+
+
+                var result = await userManager.CreateAsync(user, model.Password);
+
+				if (result.Succeeded)
 				{
 					await signInManager.SignInAsync(user, isPersistent: false);
-                    await userManager.AddToRoleAsync(user, "User");
-                    return RedirectToAction("Login", "Account");
+					await userManager.AddToRoleAsync(user, "User");
+					return RedirectToAction("Login", "Account");
 				}
 
 				foreach (var error in result.Errors)
@@ -69,26 +74,34 @@ namespace SitnEat.Controllers
 			return View();
 		}
 
-        [HttpPost]
-        public async Task<IActionResult> LoginAsync(User LogModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await userManager.FindByEmailAsync(LogModel.Email);
-                if (user != null)
-                {
-                    var result = await signInManager.PasswordSignInAsync(user, LogModel.Password, isPersistent: false, lockoutOnFailure: false);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
+		[HttpPost]
+		public async Task<IActionResult> Login (Login LogModel)
+		{
+			Console.WriteLine($"Email: {LogModel.Email}");
+			Console.WriteLine($"Password: {LogModel.Password}");
+			if (ModelState.IsValid)
+			{
+				//var normalizedEmail = userManager.NormalizeEmail(LogModel.Username);
+				var user = await userManager.FindByNameAsync(LogModel.Email);
+				//bool isLockedOut = await userManager.IsLockedOutAsync(user);
 
-                ModelState.AddModelError("", "Netačan email ili šifra!");
-            }
+				if (user != null)
+				{
+					var result = await signInManager.PasswordSignInAsync(user, LogModel.Password, isPersistent: false, lockoutOnFailure: false);
+				
+					if (result.Succeeded)
+					{
+						return RedirectToAction("Index", "Home");
+					}
+				}
 
-            return View(LogModel);
-        }
+				ModelState.AddModelError("", "Netačan email ili šifra!");
+			}
 
-    }
+			return View(LogModel);
+		}
+
+
+
+	}
 }

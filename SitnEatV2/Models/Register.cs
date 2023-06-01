@@ -9,26 +9,29 @@ namespace SitnEatV2.Models
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [DefaultValue(0)]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
+        public string? Id { get; set; }
 
-        //[Required]
+        [Required(ErrorMessage = "Unesite ime.")]
+        public string FirstName { get; set; }
 
-        public string? LastName { get; set; }
+		[Required(ErrorMessage = "Unesite prezime.")]
+		public string LastName { get; set; }
 
-        [Required]
-        [DataType(DataType.EmailAddress)]
+		[Required(ErrorMessage = "Unesite email.")]
+		[DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
+		[Required(ErrorMessage = "Unesite broj telefona.")]
+		[DataType(DataType.PhoneNumber)]
+		public string PhoneNumber { get; set; }
+
+		[Required(ErrorMessage = "Unesite password.")]
+		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
-		[Required]
-		[DataType(DataType.Password)]
-        [Compare(nameof(Password), ErrorMessage ="Password nije potvrđen!")]
+		[Required(ErrorMessage = "Potvrdite password.")]
+		[DataType(DataType.Password)] 
+        [Compare(nameof(Password), ErrorMessage = "Password nije potvrđen!")]
 		public string ConfirmPassword { get; set; }
     }
 }

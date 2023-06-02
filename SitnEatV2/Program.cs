@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SitnEatV2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
-	options.UseSqlServer(builder.Configuration.GetConnectionString("SitnEatConnectionString"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SitnEatConnectionString"));
 }
    );
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
@@ -22,9 +21,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Home/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-	app.UseHsts();
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -39,8 +38,8 @@ app.UseAuthorization();
 
 
 app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 //app.MapAreaControllerRoute(
 //    name: "admin",
@@ -58,17 +57,17 @@ app.MapControllerRoute(
 
 using (var scope = app.Services.CreateScope())
 {
-	var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-	var roles = new[] { "Admin", "User" };
+    var roles = new[] { "Admin", "User" };
 
-	foreach(var role in roles)
-	{
-		if(!await roleManager.RoleExistsAsync(role))
-		{
-			await roleManager.CreateAsync(new IdentityRole(role));
-		}
-	}
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
 }
 
 
@@ -95,7 +94,7 @@ async Task Main()
 
         string email = "admin@admin.com";
         string password = "Admin123_";
-        if(await userManager.FindByEmailAsync(email) == null)
+        if (await userManager.FindByEmailAsync(email) == null)
         {
             var user = new ApplicationUser();
 
@@ -106,7 +105,7 @@ async Task Main()
             user.Email = email;
             user.NormalizedEmail = userManager.NormalizeEmail(email);
 
-            await userManager.CreateAsync (user, password);
+            await userManager.CreateAsync(user, password);
 
             await userManager.AddToRoleAsync(user, "Admin");
         }

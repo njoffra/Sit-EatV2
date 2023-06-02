@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SitnEatV2.Models;
 
@@ -16,11 +15,15 @@ namespace SitnEatV2.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<ApplicationUser>()
+        .ToTable("AspNetUsers")
+        .HasKey(u => u.Id);
         }
 
-        public DbSet<SitnEatV2.Models.Register> Register { get; set; } = default!;
 
-        public DbSet<SitnEatV2.Models.scaffold> scaffold { get; set; } = default!;
+        //public DbSet<SitnEatV2.Models.Register> Register { get; set; } = default!;
+
+        //public DbSet<SitnEatV2.Models.scaffold> scaffold { get; set; } = default!;
 
         //public DbSet<UserAccount> userAccounts { get; set; }
 

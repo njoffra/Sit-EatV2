@@ -12,8 +12,8 @@ using SitnEatV2.Models;
 namespace SitnEatV2.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20230601160845_initial migration")]
-    partial class initialmigration
+    [Migration("20230602112338_removed scaffold")]
+    partial class removedscaffold
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,6 +161,7 @@ namespace SitnEatV2.Migrations
             modelBuilder.Entity("SitnEatV2.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")

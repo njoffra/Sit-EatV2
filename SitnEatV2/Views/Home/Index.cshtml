@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -115,7 +116,7 @@
                     @if (User.IsInRole("User"))
                     {
                         <li class="navbar-item">
-                            <a href="#" class="navbar-link hover-underline">
+                            <a href="/Home/Comments" class="navbar-link hover-underline">
                                 <div class="separator"></div>
 
                                 <span class="span">Forum</span>
@@ -286,12 +287,27 @@
                 <button class="slider-btn next" aria-label="slide to next" data-next-btn>
                     <ion-icon name="chevron-forward"></ion-icon>
                 </button>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form id="logoutForm" method="post" action="@Url.Action("Logout", "Account")" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="hero-btn has-after">
+                            <img src="~/assets/images/hero-icon.png" width="48" height="48" alt="booking icon">
+                            <span class="label-2 text-center span">Logout</span>
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <a href="/account/login" class="hero-btn has-after">
+                        <img src="~/assets/images/hero-icon.png" width="48" height="48" alt="booking icon">
 
-                <a href="#" class="hero-btn has-after">
-                    <img src="~/assets/images/hero-icon.png" width="48" height="48" alt="booking icon">
+                        <span class="label-2 text-center span">Login</span>
+                    </a>
+                }
+                
 
-                    <span class="label-2 text-center span">Uživajte s porodicom</span>
-                </a>
+
 
             </section>
             <!--#SERVICE-->

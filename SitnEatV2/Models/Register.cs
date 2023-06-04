@@ -9,13 +9,13 @@ namespace SitnEatV2.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string? Id { get; set; }
 
-        [Required(ErrorMessage = "Unesite ime.")]
+        [Required(ErrorMessage = "Unesite email.")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Unesite prezime.")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Unesite email.")]
+        [Required(ErrorMessage = "Unesite ime.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

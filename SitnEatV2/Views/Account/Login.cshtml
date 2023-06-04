@@ -1,74 +1,118 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = null;
 }
+
 @model SitnEatV2.Models.Login
-@*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger">
-        <ul>
-            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <li>@error.ErrorMessage</li>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/wooden-board-empty-table-top-blurred-background_1253-1584.jpg?w=826&t=st=1685883520~exp=1685884120~hmac=963ad4cbed1027ff20d8e4639c48fcf6529611fbb59e6d24dd6436a59e66a548');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #b99a61;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .submit-button:hover {
+                background-color: #555555;
             }
-        </ul>
-    </div>
-}
 
-<form asp-action="Login" method="post" asp-controller="Account">
-    <!-- Email input -->
-    <div class="form-outline mb4">
-        <label class="form-label" asp-for="Email">Email address</label>
-        <input type="email" asp-for="Email" class="form-control" />
-        
-    </div>
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
 
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-        <label class="form-label" asp-for="Password">Password</label>
-        <input type="password" asp-for="Password" class="form-control" />
-        
-    </div>
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+        }
 
-    <!-- 2 column grid layout for inline styling -->
-    <div class="row mb-4">
-        <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                <label class="form-check-label" for="form2Example31"> Remember me </label>
+            .register-link a {
+                color: #333333;
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prijava</h1>
+        <form method="post" asp-action="Login" asp-controller="Account">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li class="error-message">@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+            <div>
+                <label asp-for="Email">Email adresa:</label>
+                <input type="text" asp-for="Email" />
             </div>
-        </div>
-
-        <div class="col">
-            <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
-        </div>
+            <div>
+                <label asp-for="Password">Lozinka:</label>
+                <input type="password" asp-for="Password" />
+            </div>
+            <div>
+                <input type="submit" value="Prijavi se" class="submit-button" />
+            </div>
+            <div class="register-link">
+                <a href="/Account/Register">Nemate account? Registrirajte se ovdje.</a>
+            </div>
+        </form>
     </div>
-
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-    <!-- Register buttons -->
-    <div class="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-        <p>or sign up with:</p>
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-facebook-f"></i>
-        </button>
-
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-google"></i>
-        </button>
-
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-twitter"></i>
-        </button>
-
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-github"></i>
-        </button>
-    </div>
-</form>
+</body>
+</html>

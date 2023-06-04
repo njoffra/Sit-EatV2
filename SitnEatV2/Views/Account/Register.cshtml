@@ -1,98 +1,127 @@
 ﻿@model SitnEatV2.Models.Register
 @{
+    Layout = null;
 }
 
-<section class="vh-100" style="background-color: #eee;">
-	<div class="container h-100">
-		<div class="row d-flex justify-content-center align-items-center h-100">
-			<div class="col-lg-12 col-xl-11">
-				<div class="card text-black" style="border-radius: 25px;">
-					<div class="card-body p-md-5">
-						<div class="row justify-content-center">
-							<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registracija</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/wooden-board-empty-table-top-blurred-background_1253-1584.jpg?w=826&t=st=1685883520~exp=1685884120~hmac=963ad4cbed1027ff20d8e4639c48fcf6529611fbb59e6d24dd6436a59e66a548');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-								<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registracija</p>
+        .container {
+            background-color: #b99a61;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
 
-								<form method="post" asp-action="Register" asp-controller="Account" class="mx-1 mx-md-4">
-									<div asp-validation-summary="All" class="text-danger">
-									</div>
+        h1 {
+            text-align: center;
+            color: black;
+        }
 
-									<div class="d-flex flex-row align-items-center mb-4">
-										<i class="fas fa-user fa-lg me-3 fa-fw"></i>
-										<div class="form-outline flex-fill mb-0">
-											<label class="form-label" asp-for="FirstName">Vaše Ime</label>
-											<input type="text" asp-for="FirstName" class="form-control" />
-										</div>
-									</div>
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: black;
+        }
 
-									<div class="d-flex flex-row align-items-center mb-4">
-										<i class="fas fa-user fa-lg me-3 fa-fw"></i>
-										<div class="form-outline flex-fill mb-0">
-											<label class="form-label" asp-for="LastName">Vaše Prezime</label>
-											<input type="text" asp-for="LastName" class="form-control" />
-										</div>
-									</div>
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+        }
 
-									<div class="d-flex flex-row align-items-center mb-4">
-										<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-										<div class="form-outline flex-fill mb-0">
-											
-											<label class="form-label" asp-for="Email">Vaš Email</label>
-											<input type="email" asp-for="Email" class="form-control" />
-										</div>
-									</div>
+            .register-link a {
+                color: #333333;
+                text-decoration: underline;
+            }
 
-									<div class="d-flex flex-row align-items-center mb-4">
-										<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-										<div class="form-outline flex-fill mb-0">
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-											<label class="form-label" asp-for="PhoneNumber">Vaš broj telefona</label>
-											<input type="text" asp-for="PhoneNumber" class="form-control" />
-										</div>
-									</div>
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #555555;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-									<div class="d-flex flex-row align-items-center mb-4">
-										<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-										<div class="form-outline flex-fill mb-0">
-											
-											<label class="form-label" asp-for="Password">Password</label>
-											<input type="password" asp-for="Password" class="form-control" />
-										</div>
-									</div>
-
-									<div class="d-flex flex-row align-items-center mb-4">
-										<i class="fas fa-key fa-lg me-3 fa-fw"></i>
-										<div class="form-outline flex-fill mb-0">
-											
-											<label class="form-label" asp-for="ConfirmPassword">Potvrdi password</label>
-											<input type="password" asp-for="ConfirmPassword" class="form-control" />
-										</div>
-									</div>
-
-									@*<div class="form-check d-flex justify-content-center mb-5">
-									<input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-									<label class="form-check-label" for="form2Example3">
-									I agree all statements in <a href="#!">Terms of service</a>
-									</label>
-									</div>*@
-
-									<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-										<button type="submit" class="btn btn-primary btn-lg">Register</button>
-									</div>
-
-								</form>
-
-							</div>
-							<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-								<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-									 class="img-fluid" alt="Sample image">
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registracija</h1>
+        <form method="post" asp-action="Register" asp-controller="Account">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li class="error-message">@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+            <div>
+                <label asp-for="FirstName">Ime:</label>
+                <input type="text" asp-for="FirstName" />
+            </div>
+            <div>
+                <label asp-for="LastName">Prezime:</label>
+                <input type="text" asp-for="LastName" />
+            </div>
+            <div>
+                <label asp-for="Email">Email:</label>
+                <input type="email" asp-for="Email" />
+            </div>
+            <div>
+                <label asp-for="PhoneNumber">Broj telefona:</label>
+                <input type="tel" asp-for="PhoneNumber" />
+            </div>
+            <div>
+                <label asp-for="Password">Password:</label>
+                <input type="password" asp-for="Password" />
+            </div>
+            <div>
+                <label asp-for="ConfirmPassword">Potvrdi password:</label>
+                <input type="password" asp-for="ConfirmPassword" />
+            </div>
+            <div>
+                <input type="submit" value="Registriraj se" />
+            </div>
+            <div class="register-link">
+                <a href="/Account/Login">Imate account? Prijavite se ovdje.</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

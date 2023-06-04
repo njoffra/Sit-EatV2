@@ -38,10 +38,10 @@ namespace SitnEat.Controllers
             {
                 var user = new ApplicationUser
                 {
+                    Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.Email,
-                    Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                 };
                 //user.Email = userManager.NormalizeEmail(user.Email);
@@ -97,6 +97,14 @@ namespace SitnEat.Controllers
             }
 
             return View(LogModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
 

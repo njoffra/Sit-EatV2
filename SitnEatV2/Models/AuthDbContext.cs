@@ -11,7 +11,7 @@ namespace SitnEatV2.Models
         }
 
         public DbSet<ApplicationUser> applicationUsers { get; set; }
-
+        public DbSet<Comment> Comments { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -19,6 +19,8 @@ namespace SitnEatV2.Models
         .ToTable("AspNetUsers")
         .HasKey(u => u.Id);
         }
+
+        public DbSet<SitnEatV2.Models.Comment> Comment { get; set; } = default!;
 
 
         //public DbSet<SitnEatV2.Models.Register> Register { get; set; } = default!;

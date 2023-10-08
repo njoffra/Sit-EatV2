@@ -23,11 +23,7 @@ namespace SitnEatV2.Models
         public DbSet<SitnEatV2.Models.Comment> Comment { get; set; } = default!;
 
 
-        //public DbSet<SitnEatV2.Models.Register> Register { get; set; } = default!;
-
-        //public DbSet<SitnEatV2.Models.scaffold> scaffold { get; set; } = default!;
-
-        //public DbSet<UserAccount> userAccounts { get; set; }
+       
 
 
     }

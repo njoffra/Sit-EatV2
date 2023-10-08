@@ -103,7 +103,6 @@ namespace SitnEat.Controllers
                     }
                 }
 
-                //ModelState.AddModelError("", "Netačan email ili šifra!");
             }
 
             return View(LogModel);

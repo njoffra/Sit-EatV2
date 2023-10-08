@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using EmailService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +17,17 @@ namespace SitnEatV2.Controllers
     public class AdminController : Controller
     {
         private readonly AuthDbContext _context;
+        private readonly IEmailSender _emailSender;
 
         //public AdminController(AuthDbContext context)
         //{
         //    _context = context;
         //}
         private readonly UserManager<ApplicationUser> _userManager;
-        public AdminController(UserManager<ApplicationUser> userManager)
+        public AdminController(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         // GET: Admin
@@ -78,6 +82,10 @@ namespace SitnEatV2.Controllers
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var callback = Url.Action(nameof(ResetPassword), "Account", new { token, email = user.Email }, Request.Scheme);
+                    var message = new Message(new string[] { user.Email }, "Aktivacija profila", $"Da aktivirate profil, <a href='{HtmlEncoder.Default.Encode(callback)}'>kliknite ovdje</a>.");
+                    await _emailSender.SendEmailAsync(message);
                     return RedirectToAction(nameof(Index));
                 }
                 else

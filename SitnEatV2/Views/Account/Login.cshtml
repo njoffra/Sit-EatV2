@@ -85,7 +85,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Prijava</h1>
+        <h1>Prijavi se</h1>
         <form method="post" asp-action="Login" asp-controller="Account">
             @if (!ViewData.ModelState.IsValid)
             {
@@ -110,7 +110,8 @@
                 <input type="submit" value="Prijavi se" class="submit-button" />
             </div>
             <div class="register-link">
-                <a href="/Account/Register">Nemate account? Registrirajte se ovdje.</a>
+                <a href="/Account/Register">Nemate account? Registrirajte se ovdje.</a><br /><br />
+                <a href="/Account/ForgotPassword">Zaboravili ste lozinku?</a>
             </div>
         </form>
     </div>

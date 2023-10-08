@@ -1,0 +1,12 @@
+C:\Users\franj\Documents\Sit-EatV2\EmailService\bin\Debug\net7.0\EmailService.deps.json
+C:\Users\franj\Documents\Sit-EatV2\EmailService\bin\Debug\net7.0\EmailService.dll
+C:\Users\franj\Documents\Sit-EatV2\EmailService\bin\Debug\net7.0\EmailService.pdb
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\EmailService.csproj.AssemblyReference.cache
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\EmailService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\EmailService.AssemblyInfoInputs.cache
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\EmailService.AssemblyInfo.cs
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\EmailService.csproj.CoreCompileInputs.cache
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\EmailService.dll
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\refint\EmailService.dll
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\EmailService.pdb
+C:\Users\franj\Documents\Sit-EatV2\EmailService\obj\Debug\net7.0\ref\EmailService.dll

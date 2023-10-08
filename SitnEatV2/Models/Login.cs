@@ -6,12 +6,12 @@ namespace SitnEatV2.Models
     {
 
 
-        [Required(ErrorMessage = "Niste unijeli važeći email!")]
+        [Required(ErrorMessage = "Korisnik ne postoji!")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
 
-        [Required(ErrorMessage = "Netačna šifra!")]
+        [Required(ErrorMessage = "Unesite ispravnu lozinku!")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
